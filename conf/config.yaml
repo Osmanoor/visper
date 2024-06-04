@@ -14,7 +14,7 @@ gpus:
 slurm_job_id:
 train: True
 log_wandb: True
-infer_lang: arabic
+infer_lang: [arabic]
 infer_path: 
 file_path:
 ckpt_path: visper_vsr_base.pth

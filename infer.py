@@ -150,7 +150,7 @@ def inference_on_single_gpu(gpu, cfg, files_chunk, save_name):
     np.save(f'{TEMP_DIR}/{save_name}_{gpu}.npy', {'res_dict': res_dict, 'lens': lens, 'wers_scores': wers_scores})
 
 
-@hydra.main(config_path="conf", config_name="config")
+@hydra.main(config_path="conf", config_name="config",version_base = None)
 def main(cfg):
     num_gpus = torch.cuda.device_count()
     assert num_gpus > 0, "No GPUs found."

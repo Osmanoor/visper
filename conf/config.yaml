@@ -17,7 +17,7 @@ log_wandb: True
 infer_lang: [arabic]
 infer_path: 
 file_path:
-ckpt_path: /content/visper_vsr_base.pth
+ckpt_path: /visper_vsr_base.pth
 resume_from_checkpoint: 
 transfer_encoder:
 transfer_frontend:

@@ -13,6 +13,7 @@ import torch.multiprocessing as mp
 import time, re
 from tqdm import tqdm
 from subprocess import CalledProcessError, run
+from hydra import compose, initialize
 
 class InferencePipeline(torch.nn.Module):
     def __init__(self, cfg, detector="mediapipe"):
@@ -112,3 +113,12 @@ class InferencePipeline(torch.nn.Module):
             )
         waveform = torch.mean(waveform, dim=0, keepdim=True)
         return waveform
+def build_pipeline ():
+    with initialize(version_base=None, config_path="conf", job_name="test_app"):
+        cfg = compose(config_name="config")
+    gpu = 0
+    torch.cuda.set_device(gpu)
+    pipeline = InferencePipeline(cfg)
+    pipeline.modelmodule.cuda(gpu)
+    pipeline.modelmodule = torch.nn.DataParallel(pipeline.modelmodule, device_ids=[gpu])
+    return pipeline 

@@ -14,5 +14,5 @@ def preprocess_video(src_filename, dst_filename):
     data = dataloader.load_data(src_filename, landmarks)
     fps = cv2.VideoCapture(src_filename).get(cv2.CAP_PROP_FPS)
     save2vid(dst_filename, data, fps)
-    return dst_filname
+    return dst_filename
 

@@ -18,10 +18,11 @@ if uploaded_file is not None:
         video_file = temp_file.name
 else:
     video_file = "download.mp4"
-st.video(video_file)
+
 
 #Predict The Text
 dst_filename = preprocess_video(src_filename= video_file, dst_filename="roi.mp4")
+st.video("roi.mp4")
 pipeline = pipeline.build_pipeline()
 result = pipeline("roi.mp4",3)
 st.text("You said: " + result)
